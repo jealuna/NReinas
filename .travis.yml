@@ -1,0 +1,16 @@
+sudo: required
+language: bash
+services:
+  - docker
+before_install:
+  - sudo apt-get -qq update
+install:
+  - docker-compose build
+
+before_script:
+  - docker-compose up -d --force-recreate
+  - docker exec -it reinas_app_1 bash
+
+script:
+  - pytest -q test/tests.py --numero 7
+
