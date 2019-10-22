@@ -10,8 +10,9 @@ install:
 before_script:
   - docker-compose up -d --force-recreate
   - docker ps
-  - docker exec -it reinas_app_1 bash
+  - docker exec -it reinas_app_1 bash pytest -q test/tests.py --numero 7
 
 script:
-  - pytest -q test/tests.py --numero 7
+ - exit
+  
 
