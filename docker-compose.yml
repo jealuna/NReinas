@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  database:
+    container_name: postgres
+    image: postgres:latest
+    env_file: database.conf
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks: ['mynetwork']
+  app:
+    build: .
+    ports: 
+      - "4200:5000"
+    depends_on:
+      - database
+    networks: ['mynetwork']
+    command: tail -f /dev/null
+
+volumes:
+  db_volume:
+networks: {mynetwork: {}}
