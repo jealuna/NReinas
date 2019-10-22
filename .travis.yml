@@ -9,6 +9,7 @@ install:
 
 before_script:
   - docker-compose up -d --force-recreate
+  - docker ps
   - docker exec -it reinas_app_1 bash
 
 script:
