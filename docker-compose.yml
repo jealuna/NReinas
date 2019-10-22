@@ -10,6 +10,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks: ['mynetwork']
   app:
+    container_name: reinas_app_1
     build: .
     ports: 
       - "4200:5000"
